@@ -10,7 +10,7 @@ from distutils.version import LooseVersion
 #Environment Variables we respect:
 
 '''
-CMAKE_GENERATOR: sets which build toolchain CMake will use.  Defaults to 'Visual Studio 14 2015 Win64'
+CMAKE_GENERATOR: sets which build toolchain CMake will use.  Defaults to 'Visual Studio 15 2017 Win64'
 
 '''
 
