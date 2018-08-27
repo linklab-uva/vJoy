@@ -6,4 +6,4 @@ link_directories(lib/amd64)
 add_executable(vJoyClient
 src/vJoyClient.cpp
 )
-target_link_libraries(vJoyClient C:\Users\ttw2xk\Documents\git_repos\vJoy\SDK\lib\amd64\vJoyInterface.lib)
+target_link_libraries(vJoyClient ${CMAKE_SOURCE_DIR}/lib/amd64/vJoyInterface.lib)
