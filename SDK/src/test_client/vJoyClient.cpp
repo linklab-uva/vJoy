@@ -11,6 +11,7 @@
 #include <tchar.h>
 #include "vjoyinterface.h"
 #include <iostream>
+#include <Setupapi.h>
 
 // Default device ID (Used when ID not specified)
 #define DEV_ID		1
