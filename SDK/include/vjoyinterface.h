@@ -1,19 +1,12 @@
-// The following ifdef block is the standard way of creating macros which make exporting 
-// from a DLL simpler. All files within this DLL are compiled with the VJOYINTERFACE_EXPORTS
-// symbol defined on the command line. this symbol should not be defined on any project
-// that uses this DLL. This way any other project whose source files include this file see 
-// VJOYINTERFACE_API functions as being imported from a DLL, whereas this DLL sees symbols
-// defined with this macro as being exported.
-#ifdef VJOYINTERFACE_EXPORTS
-#define VJOYINTERFACE_API __declspec(dllexport)
-#else
-#define VJOYINTERFACE_API __declspec(dllimport)
-#endif
-
-#ifdef STATIC
-#undef VJOYINTERFACE_API
+#include <windows.h>
+#include <basetyps.h>
+#include <cfgmgr32.h>
+#include <Setupapi.h>
+#include <strsafe.h>
+#include <Newdev.h>
+#include <INITGUID.H>
+#include "public.h"
 #define VJOYINTERFACE_API
-#endif
 
 ///////////////////////////// vJoy device (collection) status ////////////////////////////////////////////
 #ifndef VJDSTAT
