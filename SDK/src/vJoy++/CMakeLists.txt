@@ -1,4 +1,3 @@
-include_directories(include)
 add_library(vJoy++ STATIC
 src/vJoy.cpp
 )
@@ -7,4 +6,5 @@ install(TARGETS vJoy++
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib/static
-		)
+	)
+
