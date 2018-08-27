@@ -9,10 +9,16 @@ src/vJoyClient.cpp
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
     set(VJOY_LIB ${CMAKE_SOURCE_DIR}/lib/amd64/vJoyInterface.lib)
     set(VJOY_DLL ${CMAKE_SOURCE_DIR}/lib/amd64/vJoyInterface.dll)
-elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
+else(CMAKE_SIZEOF_VOID_P EQUAL 4)
     set(VJOY_LIB ${CMAKE_SOURCE_DIR}/lib/vJoyInterface.lib)
     set(VJOY_DLL ${CMAKE_SOURCE_DIR}/lib/vJoyInterface.dll)
 endif()
+add_custom_command(TARGET vJoyClient POST_BUILD 
+               COMMAND ${CMAKE_COMMAND} -E copy_if_different
+               ${VJOY_DLL}              
+                $<TARGET_FILE_DIR:vJoyClient>
+				)
+
 target_link_libraries(vJoyClient ${VJOY_LIB})
 install(TARGETS vJoyClient
         RUNTIME DESTINATION bin
