@@ -8,5 +8,6 @@ include_directories(${PYBIND11_INCLUDE_DIR})
 add_library(py_vjoy MODULE pyvJoy.cpp)
 target_link_libraries(py_vjoy pybind11::module ${VJOY_LIB} vJoy++)
 target_compile_definitions(py_vjoy PRIVATE NOMINMAX=1)
+target_compile_definitions(py_vjoy PRIVATE VERSION_INFO="1.0.0")
 set_target_properties(py_vjoy PROPERTIES PREFIX "${PYTHON_MODULE_PREFIX}"
 											 SUFFIX "${PYTHON_MODULE_EXTENSION}")

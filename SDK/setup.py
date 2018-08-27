@@ -63,7 +63,7 @@ class CMakeBuild(build_ext):
 
 setup(
     name='py_vjoy',
-    version='0.0.1',
+    version='1.0.0',
     author='Trent Weiss',
     author_email='ttw2xk@virginia.edu',
     description='A python binding for vJoy',
