@@ -5,7 +5,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_subdirectory(pybind11)
 include_directories(${PYBIND11_INCLUDE_DIR})
 
-add_library(py_vjoy MODULE pybind_module.cpp)
+add_library(py_vjoy MODULE pyvJoy.cpp)
 target_link_libraries(py_vjoy pybind11::module ${VJOY_LIB} vJoy++)
 target_compile_definitions(py_vjoy PRIVATE NOMINMAX=1)
 set_target_properties(py_vjoy PROPERTIES PREFIX "${PYTHON_MODULE_PREFIX}"

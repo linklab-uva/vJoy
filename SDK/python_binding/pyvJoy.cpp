@@ -1,22 +1,21 @@
 #include <vJoy.h>
 #include <pybind11/pybind11.h>
-
+#include <memory>
 namespace py_vjoy {
 	class vJoy {
 	public:
 		vJoy()
 		{
-
 		}
-		virtual ~vJoy() {
-			delete impl_;
-		}
-		void capture(unsigned int id)
+		virtual ~vJoy()
 		{
-			impl_ = new vJoy_plusplus::vJoy((UINT)id);
+		}
+		void capture(int id)
+		{
+			impl_.reset(new vJoy_plusplus::vJoy((UINT)id));
 		}
 	protected:
-		vJoy_plusplus::vJoy* impl_;
+		std::shared_ptr<vJoy_plusplus::vJoy> impl_;
 	};
 }
 PYBIND11_MODULE(py_vjoy, m) {
