@@ -2,6 +2,10 @@ add_library(vJoy++ STATIC
 src/vJoy.cpp
 )
 target_link_libraries(vJoy++ ${VJOY_LIB})
+install(DIRECTORY include/
+		DESTINATION include/vJoy++
+        FILES_MATCHING PATTERN "*.h"
+		)
 install(TARGETS vJoy++
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION lib

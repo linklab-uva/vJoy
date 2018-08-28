@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(vJoy)
+project(vJoy++)
 include_directories(include)
 include_directories(src/vJoy++/include)
 
@@ -25,3 +25,5 @@ add_subdirectory(src/vJoy++)
 if(BUILD_PYTHON_BINDING)
 	add_subdirectory(python_binding)
 endif()
+list(APPEND CMAKE_MODULE_PATH modules)
+include(modules/CPackSettings.cmake)
