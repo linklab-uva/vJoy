@@ -1,7 +1,7 @@
-#include "vjoy.h"
+#include "vJoy++/vjoy.h"
 #include <stdexcept>
 #include <sstream>
-namespace vJoy_plusplus
+namespace vjoy_plusplus
 {
 	vJoy::vJoy(const unsigned int& rID)
 	{
@@ -22,7 +22,8 @@ namespace vJoy_plusplus
 		ResetVJD(rID_);
 	}
 
-	void vJoy::update(const vJoy_plusplus::JoystickPosition& joystick)
+
+	void vJoy::update(const vjoy_plusplus::JoystickPosition& joystick)
 	{
 		PVOID pPositionMessage = (PVOID)(&joystick);
 		if (!UpdateVJD(rID_, pPositionMessage))
@@ -31,5 +32,15 @@ namespace vJoy_plusplus
 			ss << "Feeding vJoy device number " << rID_ << " failed." << std::endl;
 			throw std::runtime_error(ss.str());
 		}
+	}
+
+	bool vJoy::enabled()
+	{
+		return vJoyEnabled();
+	}
+
+	VjoyDeviceStatus vJoy::getStatus(unsigned int device_id)
+	{
+		return GetVJDStatus(device_id);
 	}
 }

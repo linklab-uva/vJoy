@@ -13,8 +13,8 @@ else(CMAKE_SIZEOF_VOID_P EQUAL 4)
 	link_directories(${CMAKE_SOURCE_DIR}/lib/amd64)
 endif()
 
-install(DIRECTORY include/
-		DESTINATION include/vJoy
+install(DIRECTORY include/vJoy
+		DESTINATION include
         FILES_MATCHING PATTERN "*.h"
 		)
 install(FILES ${VJOY_LIB} DESTINATION lib)

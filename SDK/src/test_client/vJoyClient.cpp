@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <Math.h>
 #include <tchar.h>
-#include "vjoyinterface.h"
+#include "vJoy/vjoyinterface.h"
 #include <iostream>
 #include <Setupapi.h>
 
