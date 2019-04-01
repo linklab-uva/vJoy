@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 project(vJoy)
 include_directories(include)
-link_directories(lib/amd64)
 
 add_executable(vJoyClient
 src/vJoyClient.cpp
@@ -9,9 +8,11 @@ src/vJoyClient.cpp
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
     set(VJOY_LIB ${CMAKE_SOURCE_DIR}/lib/amd64/vJoyInterface.lib)
     set(VJOY_DLL ${CMAKE_SOURCE_DIR}/lib/amd64/vJoyInterface.dll)
+	link_directories(${CMAKE_SOURCE_DIR}/lib/amd64)
 else(CMAKE_SIZEOF_VOID_P EQUAL 4)
     set(VJOY_LIB ${CMAKE_SOURCE_DIR}/lib/vJoyInterface.lib)
     set(VJOY_DLL ${CMAKE_SOURCE_DIR}/lib/vJoyInterface.dll)
+	link_directories(${CMAKE_SOURCE_DIR}/lib/amd64)
 endif()
 add_custom_command(TARGET vJoyClient POST_BUILD 
                COMMAND ${CMAKE_COMMAND} -E copy_if_different
