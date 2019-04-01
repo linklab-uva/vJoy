@@ -1,9 +1,9 @@
-#include "vJoy.h"
+#include "vjoy.h"
 #include <stdexcept>
 #include <sstream>
 namespace vJoy_plusplus
 {
-	vJoy::vJoy(const UINT& rID)
+	vJoy::vJoy(const unsigned int& rID)
 	{
 		rID_ = rID;
 		if (!AcquireVJD(rID_))
@@ -22,7 +22,7 @@ namespace vJoy_plusplus
 		ResetVJD(rID_);
 	}
 
-	void vJoy::update(const JOYSTICK_POSITION_V2& joystick)
+	void vJoy::update(const vJoy_plusplus::JoystickPosition& joystick)
 	{
 		PVOID pPositionMessage = (PVOID)(&joystick);
 		if (!UpdateVJD(rID_, pPositionMessage))

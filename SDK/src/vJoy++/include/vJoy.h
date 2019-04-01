@@ -1,22 +1,22 @@
 #include "vjoyinterface.h"
-
 namespace vJoy_plusplus
 {
+	typedef JOYSTICK_POSITION_V2 JoystickPosition;
 	class vJoy 
 	{
 	public:
-		vJoy(const UINT& rID);
+		vJoy(const unsigned int& rID);
 		virtual ~vJoy();
 
 		void reset();
 
-		void update(const JOYSTICK_POSITION_V2& joystick);
+		void update(const JoystickPosition& joystick);
 
-		const UINT getID() const
+		const unsigned int getID() const
 		{
 			return rID_;
 		}
 	private:
-		UINT rID_;
+		unsigned int rID_;
 	};
 }

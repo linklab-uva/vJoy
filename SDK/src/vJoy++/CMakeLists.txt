@@ -1,5 +1,5 @@
 add_library(vJoy++ STATIC
-src/vJoy.cpp
+src/vjoy.cpp
 )
 target_link_libraries(vJoy++ ${VJOY_LIB})
 install(DIRECTORY include/
