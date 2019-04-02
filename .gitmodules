@@ -1,3 +1,6 @@
 [submodule "SDK/python_binding/pybind11"]
 	path = SDK/python_binding/pybind11
 	url = https://github.com/pybind/pybind11.git
+[submodule "SDK/modules/common"]
+	path = SDK/modules/common
+	url = https://github.com/Eyescale/CMake.git

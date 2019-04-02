@@ -36,16 +36,16 @@ int main(int argc, char** argv)
   vjoy_plusplus::VjoyDeviceStatus status = vjoy_plusplus::vJoy::getStatus(DevID);
   switch (status)
   {
-	  case VJD_STAT_OWN:
+	  case vjoy_plusplus::VjoyDeviceStatus::VJD_STAT_OWN:
 		  std::printf("vJoy device %d is already owned by this feeder\n", DevID);
 		  break;
-	  case VJD_STAT_FREE:
+	  case vjoy_plusplus::VjoyDeviceStatus::VJD_STAT_FREE:
 		  std::printf("vJoy device %d is free\n", DevID);
 		  break;
-	  case VJD_STAT_BUSY:
+	  case vjoy_plusplus::VjoyDeviceStatus::VJD_STAT_BUSY:
 		  std::printf("vJoy device %d is already owned by another feeder\nCannot continue\n", DevID);
 		  exit(-3);
-	  case VJD_STAT_MISS:
+	  case vjoy_plusplus::VjoyDeviceStatus::VJD_STAT_MISS:
 		  std::printf("vJoy device %d is not installed or disabled\nCannot continue\n", DevID);
 		  exit(-4);
 	  default:
@@ -83,6 +83,5 @@ int main(int argc, char** argv)
 	  angle += 50;
 	  Sleep(sleeptime);
   }
-  vjoy->reset();
 
 }

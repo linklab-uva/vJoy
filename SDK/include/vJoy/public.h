@@ -172,30 +172,30 @@ typedef BOOL (WINAPI *StatusMessageFunc)(void * output, TCHAR * buffer, enum ERR
 //	DeviceIoControl (hDevice, 100, &iReport, sizeof(HID_INPUT_REPORT), NULL, 0, &bytes, NULL)
 typedef struct _JOYSTICK_POSITION
 {
-	BYTE	bDevice;	// Index of device. 1-based.
-	LONG	wThrottle;
-	LONG	wRudder;
-	LONG	wAileron;
-	LONG	wAxisX;
-	LONG	wAxisY;
-	LONG	wAxisZ;
-	LONG	wAxisXRot;
-	LONG	wAxisYRot;
-	LONG	wAxisZRot;
-	LONG	wSlider;
-	LONG	wDial;
-	LONG	wWheel;
-	LONG	wAxisVX;
-	LONG	wAxisVY;
-	LONG	wAxisVZ;
-	LONG	wAxisVBRX;
-	LONG	wAxisVBRY;
-	LONG	wAxisVBRZ;
-	LONG	lButtons;	// 32 buttons: 0x00000001 means button1 is pressed, 0x80000000 -> button32 is pressed
-	DWORD	bHats;		// Lower 4 bits: HAT switch or 16-bit of continuous HAT switch
-	DWORD	bHatsEx1;	// 16-bit of continuous HAT switch
-	DWORD	bHatsEx2;	// 16-bit of continuous HAT switch
-	DWORD	bHatsEx3;	// 16-bit of continuous HAT switch
+	unsigned char	bDevice;	// Index of device. 1-based.
+	long	wThrottle;
+	long	wRudder;
+	long	wAileron;
+	long	wAxisX;
+	long	wAxisY;
+	long	wAxisZ;
+	long	wAxisXRot;
+	long	wAxisYRot;
+	long	wAxisZRot;
+	long	wSlider;
+	long	wDial;
+	long	wWheel;
+	long	wAxisVX;
+	long	wAxisVY;
+	long	wAxisVZ;
+	long	wAxisVBRX;
+	long	wAxisVBRY;
+	long	wAxisVBRZ;
+	long	lButtons;	// 32 buttons: 0x00000001 means button1 is pressed, 0x80000000 -> button32 is pressed
+	unsigned long	bHats;		// Lower 4 bits: HAT switch or 16-bit of continuous HAT switch
+	unsigned long	bHatsEx1;	// 16-bit of continuous HAT switch
+	unsigned long	bHatsEx2;	// 16-bit of continuous HAT switch
+	unsigned long	bHatsEx3;	// 16-bit of continuous HAT switch
 } JOYSTICK_POSITION, *PJOYSTICK_POSITION;
 
 // Superset of JOYSTICK_POSITION
@@ -203,35 +203,35 @@ typedef struct _JOYSTICK_POSITION
 typedef struct _JOYSTICK_POSITION_V2
 {
 	/// JOYSTICK_POSITION
-	BYTE	bDevice;	// Index of device. 1-based.
-	LONG	wThrottle;
-	LONG	wRudder;
-	LONG	wAileron;
-	LONG	wAxisX;
-	LONG	wAxisY;
-	LONG	wAxisZ;
-	LONG	wAxisXRot;
-	LONG	wAxisYRot;
-	LONG	wAxisZRot;
-	LONG	wSlider;
-	LONG	wDial;
-	LONG	wWheel;
-	LONG	wAxisVX;
-	LONG	wAxisVY;
-	LONG	wAxisVZ;
-	LONG	wAxisVBRX;
-	LONG	wAxisVBRY;
-	LONG	wAxisVBRZ;
-	LONG	lButtons;	// 32 buttons: 0x00000001 means button1 is pressed, 0x80000000 -> button32 is pressed
-	DWORD	bHats;		// Lower 4 bits: HAT switch or 16-bit of continuous HAT switch
-	DWORD	bHatsEx1;	// Lower 4 bits: HAT switch or 16-bit of continuous HAT switch
-	DWORD	bHatsEx2;	// Lower 4 bits: HAT switch or 16-bit of continuous HAT switch
-	DWORD	bHatsEx3;	// Lower 4 bits: HAT switch or 16-bit of continuous HAT switch LONG lButtonsEx1; // Buttons 33-64
+	unsigned char bDevice;	// Index of device. 1-based.
+	long wThrottle;
+	long wRudder;
+	long wAileron;
+	long wAxisX;
+	long wAxisY;
+	long wAxisZ;
+	long wAxisXRot;
+	long wAxisYRot;
+	long wAxisZRot;
+	long wSlider;
+	long wDial;
+	long wWheel;
+	long wAxisVX;
+	long wAxisVY;
+	long wAxisVZ;
+	long wAxisVBRX;
+	long wAxisVBRY;
+	long wAxisVBRZ;
+	long lButtons;	// 32 buttons: 0x00000001 means button1 is pressed, 0x80000000 -> button32 is pressed
+	unsigned long	bHats;		// Lower 4 bits: HAT switch or 16-bit of continuous HAT switch
+	unsigned long	bHatsEx1;	// Lower 4 bits: HAT switch or 16-bit of continuous HAT switch
+	unsigned long	bHatsEx2;	// Lower 4 bits: HAT switch or 16-bit of continuous HAT switch
+	unsigned long	bHatsEx3;	// Lower 4 bits: HAT switch or 16-bit of continuous HAT switch LONG lButtonsEx1; // Buttons 33-64
 	
 	/// JOYSTICK_POSITION_V2 Extenssion
-	LONG lButtonsEx1; // Buttons 33-64
-	LONG lButtonsEx2; // Buttons 65-96
-	LONG lButtonsEx3; // Buttons 97-128
+	long lButtonsEx1; // Buttons 33-64
+	long lButtonsEx2; // Buttons 65-96
+	long lButtonsEx3; // Buttons 97-128
 } JOYSTICK_POSITION_V2, *PJOYSTICK_POSITION_V2;
 
 

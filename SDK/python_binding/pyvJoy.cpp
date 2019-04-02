@@ -1,4 +1,4 @@
-#include <vJoy.h>
+#include <vJoy++/vJoy.h>
 #include <pybind11/pybind11.h>
 #include <memory>
 namespace py_vjoy {
@@ -63,6 +63,10 @@ namespace py_vjoy {
 			setbHatsEx1(0);
 		    setbHatsEx2(0);
 			setbHatsEx3(0);
+		}
+		virtual ~Joystick()
+		{
+			
 		}
 		//setters
 		void setThrottle(long wThrottle)
@@ -288,22 +292,19 @@ namespace py_vjoy {
 		}
 		virtual ~vJoy()
 		{
+			impl_->reset();
 		}
 		void capture(unsigned int id)
 		{
-			impl_.reset(new vJoy_plusplus::vJoy((UINT)id));
+			impl_.reset(new vjoy_plusplus::vJoy((UINT)id));
 		}
 		void update(Joystick& joystick)
 		{
-			joystick.joystick_.bDevice  = (BYTE) impl_->getID();
+			joystick.joystick_.bDevice  = (unsigned char) impl_->getID();
 			impl_->update(joystick.joystick_);
 		}
-		void reset()
-		{
-			impl_->reset();
-		}
 	protected:
-		std::shared_ptr<vJoy_plusplus::vJoy> impl_;
+		std::shared_ptr<vjoy_plusplus::vJoy> impl_;
 	};
 }
 PYBIND11_MODULE(py_vjoy, m) {
@@ -318,8 +319,7 @@ PYBIND11_MODULE(py_vjoy, m) {
 	vJoy.
 		def(pybind11::init<>()).
 		def("capture", &py_vjoy::vJoy::capture, "Captures the specified vJoy device").
-		def("update", &py_vjoy::vJoy::update, "updates the device with joystick values").
-		def("reset", &py_vjoy::vJoy::reset, "reset the device to default values");
+		def("update", &py_vjoy::vJoy::update, "updates the device with joystick values");
 
 
 	pybind11::class_<py_vjoy::Joystick> Joystick(m, "Joystick");
