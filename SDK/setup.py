@@ -62,13 +62,13 @@ class CMakeBuild(build_ext):
         subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
 
 setup(
-    name='py_vjoy',
+    name='pyvjoy',
     version='1.0.0',
     author='Trent Weiss',
     author_email='ttw2xk@virginia.edu',
     description='A python binding for vJoy',
     long_description='',
-    ext_modules=[CMakeExtension('py_vjoy')],
+    ext_modules=[CMakeExtension('pyvjoy')],
     cmdclass=dict(build_ext=CMakeBuild),
     zip_safe=False,
 )

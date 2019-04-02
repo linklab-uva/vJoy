@@ -1,16 +1,11 @@
-import py_vjoy, sys
-vj = py_vjoy.vJoy()
+import pyvjoy, sys
+import time
+vj = pyvjoy.vJoy()
 vj.capture(1)
-vj.reset()
-js = py_vjoy.Joystick()
-print("what value?")
-data = sys.stdin.readline()
-js.setAxisX(int(data))
-js.setAxisY(int(data))
-js.setAxisXRot(int(data))
-js.setAxisYRot(int(data))
-print("XROT: " + str(js.AxisXRot()))
-print("YROT: " + str(js.AxisYRot()))
-vj.update(js)
-print("any key to exit")
-data = sys.stdin.readline()
+js = pyvjoy.Joystick()
+maxval = 32750
+time.sleep(3.0)
+for steer in range(0,maxval,50):
+    js.setAxisY(steer)
+    vj.update(js)
+    time.sleep(0.1)

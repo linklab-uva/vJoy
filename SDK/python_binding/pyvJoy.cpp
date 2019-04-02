@@ -1,7 +1,7 @@
 #include <vJoy++/vJoy.h>
 #include <pybind11/pybind11.h>
 #include <memory>
-namespace py_vjoy {
+namespace pyvjoy {
 	class Joystick
 	{
 		friend class vJoy;
@@ -307,7 +307,7 @@ namespace py_vjoy {
 		std::shared_ptr<vjoy_plusplus::vJoy> impl_;
 	};
 }
-PYBIND11_MODULE(py_vjoy, m) {
+PYBIND11_MODULE(pyvjoy, m) {
 	m.doc() = R"pbdoc(
 
         Pybind11 plugin for vJoy
@@ -315,68 +315,68 @@ PYBIND11_MODULE(py_vjoy, m) {
         -----------------------
 
     )pbdoc";
-	pybind11::class_<py_vjoy::vJoy> vJoy(m, "vJoy");
+	pybind11::class_<pyvjoy::vJoy> vJoy(m, "vJoy");
 	vJoy.
 		def(pybind11::init<>()).
-		def("capture", &py_vjoy::vJoy::capture, "Captures the specified vJoy device").
-		def("update", &py_vjoy::vJoy::update, "updates the device with joystick values");
+		def("capture", &pyvjoy::vJoy::capture, "Captures the specified vJoy device").
+		def("update", &pyvjoy::vJoy::update, "updates the device with joystick values");
 
 
-	pybind11::class_<py_vjoy::Joystick> Joystick(m, "Joystick");
+	pybind11::class_<pyvjoy::Joystick> Joystick(m, "Joystick");
 	Joystick.
 		def(pybind11::init<>()).
-		def("setThrottle", &py_vjoy::Joystick::setThrottle, "Sets the throttle").
-		def("setRudder", &py_vjoy::Joystick::setRudder, "Sets the rudder").
-		def("setAileron", &py_vjoy::Joystick::setAileron, "Sets the aileron").
-		def("setAxisX", &py_vjoy::Joystick::setAxisX, "Sets the axis x").
-		def("setAxisY", &py_vjoy::Joystick::setAxisY, "Sets the axis y").
-		def("setAxisZ", &py_vjoy::Joystick::setAxisZ, "Sets the axis z").
-		def("setAxisXRot", &py_vjoy::Joystick::setAxisXRot, "Sets the axis XROT").
-		def("setAxisYRot", &py_vjoy::Joystick::setAxisYRot, "Sets the axis YROT").
-		def("setAxisZRot", &py_vjoy::Joystick::setAxisZRot, "Sets the axis ZROT").
-		def("setSlider", &py_vjoy::Joystick::setSlider, "Sets the axis slider").
-		def("setDial", &py_vjoy::Joystick::setDial, "Sets the axis dial").
-		def("setWheel", &py_vjoy::Joystick::setWheel, "Sets the axis wheel").
-		def("setAxisVX", &py_vjoy::Joystick::setAxisVX, "Sets the axis VX").
-		def("setAxisVY", &py_vjoy::Joystick::setAxisVY, "Sets the axis VY").
-		def("setAxisVZ", &py_vjoy::Joystick::setAxisVZ, "Sets the axis VZ").
-		def("setAxisVBRX", &py_vjoy::Joystick::setAxisVBRX, "Sets the axis VBRX").
-		def("setAxisVBRY", &py_vjoy::Joystick::setAxisVBRY, "Sets the axis VBRY").
-		def("setAxisVBRZ", &py_vjoy::Joystick::setAxisVBRZ, "Sets the axis VBRZ").
-		def("setlButtons", &py_vjoy::Joystick::setlButtons, "").
-		def("setlButtonsEx1", &py_vjoy::Joystick::setlButtonsEx1, "").
-		def("setlButtonsEx2", &py_vjoy::Joystick::setlButtonsEx2, "").
-		def("setlButtonsEx3", &py_vjoy::Joystick::setlButtonsEx3, "").
-		def("setbHats", &py_vjoy::Joystick::setbHats, "").
-		def("setbHatsEx1", &py_vjoy::Joystick::setbHatsEx1, "").
-		def("setbHatsEx2", &py_vjoy::Joystick::setbHatsEx2, "").
-		def("setbHatsEx3", &py_vjoy::Joystick::setbHatsEx3, "").
-		def("Throttle", &py_vjoy::Joystick::Throttle, "Sets the throttle").
-		def("Rudder", &py_vjoy::Joystick::Rudder, "Sets the rudder").
-		def("Aileron", &py_vjoy::Joystick::Aileron, "Sets the aileron").
-		def("AxisX", &py_vjoy::Joystick::AxisX, "Sets the axis x").
-		def("AxisY", &py_vjoy::Joystick::AxisY, "Sets the axis y").
-		def("AxisZ", &py_vjoy::Joystick::AxisZ, "Sets the axis z").
-		def("AxisXRot", &py_vjoy::Joystick::AxisXRot, "Sets the axis XROT").
-		def("AxisYRot", &py_vjoy::Joystick::AxisYRot, "Sets the axis YROT").
-		def("AxisZRot", &py_vjoy::Joystick::AxisZRot, "Sets the axis ZROT").
-		def("Slider", &py_vjoy::Joystick::Slider, "Sets the axis slider").
-		def("Dial", &py_vjoy::Joystick::Dial, "Sets the axis dial").
-		def("Wheel", &py_vjoy::Joystick::Wheel, "Sets the axis wheel").
-		def("AxisVX", &py_vjoy::Joystick::AxisVX, "Sets the axis VX").
-		def("AxisVY", &py_vjoy::Joystick::AxisVY, "Sets the axis VY").
-		def("AxisVZ", &py_vjoy::Joystick::AxisVZ, "Sets the axis VZ").
-		def("AxisVBRX", &py_vjoy::Joystick::AxisVBRX, "Sets the axis VBRX").
-		def("AxisVBRY", &py_vjoy::Joystick::AxisVBRY, "Sets the axis VBRY").
-		def("AxisVBRZ", &py_vjoy::Joystick::AxisVBRZ, "Sets the axis VBRZ").
-		def("lButtons", &py_vjoy::Joystick::lButtons, "").
-		def("lButtonsEx1", &py_vjoy::Joystick::lButtonsEx1, "").
-		def("lButtonsEx2", &py_vjoy::Joystick::lButtonsEx2, "").
-		def("lButtonsEx3", &py_vjoy::Joystick::lButtonsEx3, "").
-		def("bHats", &py_vjoy::Joystick::bHats, "").
-		def("bHatsEx1", &py_vjoy::Joystick::bHatsEx1, "").
-		def("bHatsEx2", &py_vjoy::Joystick::bHatsEx2, "").
-		def("bHatsEx3", &py_vjoy::Joystick::bHatsEx3, "");
+		def("setThrottle", &pyvjoy::Joystick::setThrottle, "Sets the throttle").
+		def("setRudder", &pyvjoy::Joystick::setRudder, "Sets the rudder").
+		def("setAileron", &pyvjoy::Joystick::setAileron, "Sets the aileron").
+		def("setAxisX", &pyvjoy::Joystick::setAxisX, "Sets the axis x").
+		def("setAxisY", &pyvjoy::Joystick::setAxisY, "Sets the axis y").
+		def("setAxisZ", &pyvjoy::Joystick::setAxisZ, "Sets the axis z").
+		def("setAxisXRot", &pyvjoy::Joystick::setAxisXRot, "Sets the axis XROT").
+		def("setAxisYRot", &pyvjoy::Joystick::setAxisYRot, "Sets the axis YROT").
+		def("setAxisZRot", &pyvjoy::Joystick::setAxisZRot, "Sets the axis ZROT").
+		def("setSlider", &pyvjoy::Joystick::setSlider, "Sets the axis slider").
+		def("setDial", &pyvjoy::Joystick::setDial, "Sets the axis dial").
+		def("setWheel", &pyvjoy::Joystick::setWheel, "Sets the axis wheel").
+		def("setAxisVX", &pyvjoy::Joystick::setAxisVX, "Sets the axis VX").
+		def("setAxisVY", &pyvjoy::Joystick::setAxisVY, "Sets the axis VY").
+		def("setAxisVZ", &pyvjoy::Joystick::setAxisVZ, "Sets the axis VZ").
+		def("setAxisVBRX", &pyvjoy::Joystick::setAxisVBRX, "Sets the axis VBRX").
+		def("setAxisVBRY", &pyvjoy::Joystick::setAxisVBRY, "Sets the axis VBRY").
+		def("setAxisVBRZ", &pyvjoy::Joystick::setAxisVBRZ, "Sets the axis VBRZ").
+		def("setlButtons", &pyvjoy::Joystick::setlButtons, "").
+		def("setlButtonsEx1", &pyvjoy::Joystick::setlButtonsEx1, "").
+		def("setlButtonsEx2", &pyvjoy::Joystick::setlButtonsEx2, "").
+		def("setlButtonsEx3", &pyvjoy::Joystick::setlButtonsEx3, "").
+		def("setbHats", &pyvjoy::Joystick::setbHats, "").
+		def("setbHatsEx1", &pyvjoy::Joystick::setbHatsEx1, "").
+		def("setbHatsEx2", &pyvjoy::Joystick::setbHatsEx2, "").
+		def("setbHatsEx3", &pyvjoy::Joystick::setbHatsEx3, "").
+		def("Throttle", &pyvjoy::Joystick::Throttle, "Sets the throttle").
+		def("Rudder", &pyvjoy::Joystick::Rudder, "Sets the rudder").
+		def("Aileron", &pyvjoy::Joystick::Aileron, "Sets the aileron").
+		def("AxisX", &pyvjoy::Joystick::AxisX, "Sets the axis x").
+		def("AxisY", &pyvjoy::Joystick::AxisY, "Sets the axis y").
+		def("AxisZ", &pyvjoy::Joystick::AxisZ, "Sets the axis z").
+		def("AxisXRot", &pyvjoy::Joystick::AxisXRot, "Sets the axis XROT").
+		def("AxisYRot", &pyvjoy::Joystick::AxisYRot, "Sets the axis YROT").
+		def("AxisZRot", &pyvjoy::Joystick::AxisZRot, "Sets the axis ZROT").
+		def("Slider", &pyvjoy::Joystick::Slider, "Sets the axis slider").
+		def("Dial", &pyvjoy::Joystick::Dial, "Sets the axis dial").
+		def("Wheel", &pyvjoy::Joystick::Wheel, "Sets the axis wheel").
+		def("AxisVX", &pyvjoy::Joystick::AxisVX, "Sets the axis VX").
+		def("AxisVY", &pyvjoy::Joystick::AxisVY, "Sets the axis VY").
+		def("AxisVZ", &pyvjoy::Joystick::AxisVZ, "Sets the axis VZ").
+		def("AxisVBRX", &pyvjoy::Joystick::AxisVBRX, "Sets the axis VBRX").
+		def("AxisVBRY", &pyvjoy::Joystick::AxisVBRY, "Sets the axis VBRY").
+		def("AxisVBRZ", &pyvjoy::Joystick::AxisVBRZ, "Sets the axis VBRZ").
+		def("lButtons", &pyvjoy::Joystick::lButtons, "").
+		def("lButtonsEx1", &pyvjoy::Joystick::lButtonsEx1, "").
+		def("lButtonsEx2", &pyvjoy::Joystick::lButtonsEx2, "").
+		def("lButtonsEx3", &pyvjoy::Joystick::lButtonsEx3, "").
+		def("bHats", &pyvjoy::Joystick::bHats, "").
+		def("bHatsEx1", &pyvjoy::Joystick::bHatsEx1, "").
+		def("bHatsEx2", &pyvjoy::Joystick::bHatsEx2, "").
+		def("bHatsEx3", &pyvjoy::Joystick::bHatsEx3, "");
 #ifdef VERSION_INFO
 	m.attr("__version__") = VERSION_INFO;
 #else
