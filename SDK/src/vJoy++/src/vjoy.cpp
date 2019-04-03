@@ -22,6 +22,15 @@ namespace vjoy_plusplus
 		ResetVJD(rID_);
 	}
 
+	unsigned int vJoy::minAxisvalue()
+	{
+		return 0;
+	}
+
+	unsigned int vJoy::maxAxisvalue()
+	{
+		return 32775;
+	}
 
 	void vJoy::update(const vjoy_plusplus::JoystickPosition& joystick)
 	{

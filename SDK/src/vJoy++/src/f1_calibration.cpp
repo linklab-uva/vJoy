@@ -94,16 +94,16 @@ int main(int argc, char** argv)
 			exit(-5);
 	}
 
-	vjoy_plusplus::JoystickPosition iReport;
+	vjoy_plusplus::JoystickPosition joystick_value;
 	std::unique_ptr<vjoy_plusplus::vJoy> vjoy(new vjoy_plusplus::vJoy(DevID));
 
-	iReport.lButtons = 0x00000000;
-	unsigned int min = 0, max = 32750;
+	joystick_value.lButtons = 0x00000000;
+	unsigned int min = vjoy_plusplus::vJoy::minAxisvalue(), max = vjoy_plusplus::vJoy::maxAxisvalue();
 	unsigned int middle = (min + max)/2;
-	iReport.wAxisY = middle;
-	iReport.wAxisZ = 0;
-	iReport.wAxisZRot = 0;
-	vjoy->update(iReport);
+	joystick_value.wAxisY = middle;
+	joystick_value.wAxisZ = 0;
+	joystick_value.wAxisZRot = 0;
+	vjoy->update(joystick_value);
 	countdown(3, "Beginning calibration in");
 	if (direction > 0)
 	{
@@ -111,8 +111,8 @@ int main(int argc, char** argv)
 		{
 
 			printf("Setting wheel val: %ld \n", angle);
-			iReport.wAxisY = angle;
-			vjoy->update(iReport);
+			joystick_value.wAxisY = angle;
+			vjoy->update(joystick_value);
 			std::this_thread::sleep_for(std::chrono::milliseconds(sleeptime));
 		}
 	}
@@ -121,8 +121,8 @@ int main(int argc, char** argv)
 		for(unsigned int angle = max; angle >= middle; angle -= 50)
 		{
 			printf("Setting wheel val: %ld \n", angle);
-			iReport.wAxisY = angle;
-			vjoy->update(iReport);
+			joystick_value.wAxisY = angle;
+			vjoy->update(joystick_value);
 			std::this_thread::sleep_for(std::chrono::milliseconds(sleeptime));
 		}
 	}
@@ -131,8 +131,8 @@ int main(int argc, char** argv)
 		for (unsigned int throttleval = 0; throttleval <= max; throttleval += 50)
 		{
 			printf("Setting throttle val: %ld \n", throttleval);
-			iReport.wAxisZ = throttleval;
-			vjoy->update(iReport);
+			joystick_value.wAxisZ = throttleval;
+			vjoy->update(joystick_value);
 			std::this_thread::sleep_for(std::chrono::milliseconds(sleeptime));
 		}
 	}
@@ -141,15 +141,15 @@ int main(int argc, char** argv)
 		for (unsigned int brakeval = 0; brakeval <= max; brakeval += 50)
 		{
 			printf("Setting brake val: %ld \n", brakeval);
-			iReport.wAxisZRot = brakeval;
-			vjoy->update(iReport);
+			joystick_value.wAxisZRot = brakeval;
+			vjoy->update(joystick_value);
 			std::this_thread::sleep_for(std::chrono::milliseconds(sleeptime));
 		}
 	}
-	iReport.wAxisY = middle;
-	iReport.wAxisZ = 0;
-	iReport.wAxisZRot = 0;
-	vjoy->update(iReport);
+	joystick_value.wAxisY = middle;
+	joystick_value.wAxisZ = 0;
+	joystick_value.wAxisZRot = 0;
+	vjoy->update(joystick_value);
 	std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
 }

@@ -18,6 +18,10 @@ namespace vjoy_plusplus
 			return rID_;
 		}
 
+		static unsigned int minAxisvalue();
+
+		static unsigned int maxAxisvalue();
+
 		static bool enabled();
 
 		static VjoyDeviceStatus getStatus(unsigned int device_id);
