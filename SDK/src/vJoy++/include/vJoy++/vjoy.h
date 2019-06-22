@@ -1,3 +1,5 @@
+#ifndef VJOY_PLUSPLUS_H
+#define VJOY_PLUSPLUS_H
 #include "vJoy/vjoyinterface.h"
 namespace vjoy_plusplus
 {
@@ -29,3 +31,4 @@ namespace vjoy_plusplus
 		unsigned int rID_;
 	};
 }
+#endif
