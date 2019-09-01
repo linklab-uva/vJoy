@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.10)
 project(vJoy++)
 include_directories(include)
 include_directories(src/vJoy++/include)
-if(NOT BUILD_SHARED_LIBS)
+option(STATIC_CRT "Use static MSVC runtime" OFF)
+if((NOT BUILD_SHARED_LIBS) AND STATIC_CRT)
 	foreach(flag_var
 		CMAKE_C_FLAGS CMAKE_C_FLAGS_DEBUG CMAKE_C_FLAGS_RELEASE
 		CMAKE_C_FLAGS_MINSIZEREL CMAKE_C_FLAGS_RELWITHDEBINFO
