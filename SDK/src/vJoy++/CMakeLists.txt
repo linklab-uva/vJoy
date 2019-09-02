@@ -2,7 +2,7 @@
 find_package( Boost REQUIRED COMPONENTS date_time filesystem program_options regex )
 message(STATUS "Found the following boost libraries: ${Boost_LIBRARIES}")
 set(vJoy++_SOURCES src/vjoy.cpp)
-add_library(vJoy++ STATIC ${vJoy++_SOURCES})
+add_library(vJoy++ ${vJoy++_SOURCES})
 target_link_libraries(vJoy++
  PUBLIC
  $<BUILD_INTERFACE:${VJOY_LIB}>
@@ -32,6 +32,7 @@ install(
     EXPORT vJoy++-export
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
+    RUNTIME DESTINATION bin COMPONENT runtime
 )
 install(EXPORT vJoy++-export
   FILE
