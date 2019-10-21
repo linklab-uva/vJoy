@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(vJoy++)
+project(vJoy_plusplus)
 option(BUILD_SHARED_LIBS ON)
 option(STATIC_CRT "Use static MSVC runtime" OFF)
 if(BUILD_SHARED_LIBS AND MSVC)
@@ -35,16 +35,16 @@ install(DIRECTORY include/vJoy
         FILES_MATCHING PATTERN "*.h"
 		)
 install(FILES ${VJOY_LIB}
-#EXPORT vJoy++-export
+#EXPORT ${PROJECT_NAME}-export
 DESTINATION lib
 )
 
 add_subdirectory(src/test_client)
-add_subdirectory(src/vJoy++)
+add_subdirectory(src/${PROJECT_NAME})
 # if(BUILD_PYTHON_BINDING)
 # 	add_subdirectory(python_binding)
 # endif()
-set(${PROJECT_NAME}Targets vJoy++)
+set(${PROJECT_NAME}Targets ${PROJECT_NAME})
 include(modules/GenerateCMakeConfig.cmake)
 include(modules/CPackSettings.cmake)
-install(FILES ${CMAKE_BINARY_DIR}/vJoy++-config.cmake DESTINATION cmake/)
+install(FILES ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-config.cmake DESTINATION cmake/)
