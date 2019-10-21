@@ -1,4 +1,4 @@
-#include "vJoy++/vjoy.h"
+#include "vJoy_plusplus/vjoy.h"
 #include <stdexcept>
 #include <sstream>
 namespace vjoy_plusplus

@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <vJoy++/vjoy.h>
+#include <vJoy_plusplus/vjoy.h>
 #include <memory>
 int main(int argc, char** argv)
 {

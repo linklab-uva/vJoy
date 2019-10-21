@@ -1,42 +1,42 @@
 #set(Boost_USE_STATIC_LIBS ON)
 find_package( Boost REQUIRED COMPONENTS date_time filesystem program_options regex )
 message(STATUS "Found the following boost libraries: ${Boost_LIBRARIES}")
-set(vJoy++_SOURCES src/vjoy.cpp)
-add_library(vJoy++ ${vJoy++_SOURCES})
-target_link_libraries(vJoy++
+set(${PROJECT_NAME}_SOURCES src/vjoy.cpp)
+add_library(${PROJECT_NAME} ${${PROJECT_NAME}_SOURCES})
+target_link_libraries(${PROJECT_NAME}
  PUBLIC
  $<BUILD_INTERFACE:${VJOY_LIB}>
  $<INSTALL_INTERFACE:\${_IMPORT_PREFIX}/lib/vJoyInterface.lib>    
  )
-target_include_directories(vJoy++ 
+target_include_directories(${PROJECT_NAME} 
     PUBLIC
     $<INSTALL_INTERFACE:include>    
     $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     )
-set_target_properties(vJoy++ PROPERTIES DEBUG_POSTFIX "_debug")
+set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX "_debug")
 
 
 
-set(vjoy++_testapp_SOURCES src/vjoy++_testapp.cpp)
-add_executable(vjoy++_testapp ${vjoy++_testapp_SOURCES})
-target_link_libraries(vjoy++_testapp vJoy++)
+set(${PROJECT_NAME}_testapp_SOURCES src/${PROJECT_NAME}_testapp.cpp)
+add_executable(${PROJECT_NAME}_testapp ${${PROJECT_NAME}_testapp_SOURCES})
+target_link_libraries(${PROJECT_NAME}_testapp ${PROJECT_NAME})
 
 
-install(DIRECTORY include/vJoy++
+install(DIRECTORY include/${PROJECT_NAME}
 		DESTINATION include
         FILES_MATCHING PATTERN "*.h"
         )
 install(
-    TARGETS vJoy++
-    EXPORT vJoy++-export
+    TARGETS ${PROJECT_NAME}
+    EXPORT ${PROJECT_NAME}-export
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
     RUNTIME DESTINATION bin COMPONENT runtime
 )
-install(EXPORT vJoy++-export
+install(EXPORT ${PROJECT_NAME}-export
   FILE
-  vJoy++Targets.cmake
+  ${PROJECT_NAME}Targets.cmake
   NAMESPACE
     vjoy::
   DESTINATION
