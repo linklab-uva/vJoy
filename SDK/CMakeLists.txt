@@ -19,27 +19,28 @@ if((NOT BUILD_SHARED_LIBS) AND MSVC AND STATIC_CRT)
 endif()
 
 option(BUILD_PYTHON_BINDING "Generate pybind11 bindings" OFF)
+option(BUILD_TEST_CLIENT "Build the test executable" OFF)
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/install CACHE PATH "..." FORCE)
 endif()
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-    set(VJOY_LIB ${CMAKE_SOURCE_DIR}/lib/amd64/vJoyInterface.lib)
-	link_directories(${CMAKE_SOURCE_DIR}/lib/amd64)
+	set(VJOY_LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/amd64)
 else(CMAKE_SIZEOF_VOID_P EQUAL 4)
-    set(VJOY_LIB ${CMAKE_SOURCE_DIR}/lib/vJoyInterface.lib)
-	link_directories(${CMAKE_SOURCE_DIR}/lib/amd64)
+	set(VJOY_LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 endif()
+set(VJOY_LIB vJoyInterface)
 
 install(DIRECTORY include/vJoy
 		DESTINATION include
         FILES_MATCHING PATTERN "*.h"
 		)
-install(FILES ${VJOY_LIB}
+install(FILES ${VJOY_LIB_DIR}/${VJOY_LIB}.lib
 #EXPORT ${PROJECT_NAME}-export
-DESTINATION lib
+DESTINATION lib/vjoyinterface
 )
-
-add_subdirectory(src/test_client)
+if(BUILD_TEST_CLIENT)
+	add_subdirectory(src/test_client)
+endif(BUILD_TEST_CLIENT)
 add_subdirectory(src/${PROJECT_NAME})
 # if(BUILD_PYTHON_BINDING)
 # 	add_subdirectory(python_binding)
@@ -47,4 +48,12 @@ add_subdirectory(src/${PROJECT_NAME})
 set(${PROJECT_NAME}Targets ${PROJECT_NAME})
 include(modules/GenerateCMakeConfig.cmake)
 include(modules/CPackSettings.cmake)
-install(FILES ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-config.cmake DESTINATION cmake/)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config.cmake DESTINATION cmake/)
+install(EXPORT ${PROJECT_NAME}-export
+  FILE
+  ${PROJECT_NAME}Targets.cmake
+  NAMESPACE
+    vjoy::
+  DESTINATION
+    cmake
+)
