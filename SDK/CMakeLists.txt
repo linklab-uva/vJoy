@@ -1,5 +1,10 @@
 cmake_minimum_required(VERSION 3.10)
 project(vJoy_plusplus)
+if(NOT WIN32)
+	message(STATUS "Currently, only windows is supported. project will not be built.")
+	return()
+endif(NOT WIN32)
+
 option(BUILD_SHARED_LIBS ON)
 option(STATIC_CRT "Use static MSVC runtime" OFF)
 if(BUILD_SHARED_LIBS AND MSVC)
