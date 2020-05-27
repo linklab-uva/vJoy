@@ -21,7 +21,12 @@ target_include_directories(${PROJECT_NAME}
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../../include>
 )
 set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX "_debug")
-
+if(BUILD_SHARED_LIBS AND MSVC)
+  target_compile_definitions(${PROJECT_NAME} PRIVATE "VJOY_BUILDING_DLL=__declspec(dllexport)")
+  target_compile_definitions(${PROJECT_NAME} INTERFACE "VJOY_BUILDING_DLL=__declspec(dllimport)")
+else()
+  target_compile_definitions(${PROJECT_NAME} PUBLIC VJOY_BUILDING_DLL)
+endif()
 
 
 set(${PROJECT_NAME}_testapp_SOURCES src/${PROJECT_NAME}_testapp.cpp)

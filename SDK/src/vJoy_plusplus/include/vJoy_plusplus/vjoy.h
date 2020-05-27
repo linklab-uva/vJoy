@@ -5,7 +5,7 @@ namespace vjoy_plusplus
 {
 	typedef JOYSTICK_POSITION_V2 JoystickPosition;
 	typedef VjdStat VjoyDeviceStatus;
-	class vJoy 
+	class VJOY_BUILDING_DLL vJoy 
 	{
 	public:
 		vJoy(const unsigned int& rID);
