@@ -1,11 +1,15 @@
 #ifndef VJOY_PLUSPLUS_H
 #define VJOY_PLUSPLUS_H
+//#include "vJoy/public.h"
 #include "vJoy/vjoyinterface.h"
+#ifndef VJOY_PLUSPLUS_VISIBILITY
+  #define VJOY_PLUSPLUS_VISIBILITY __declspec(dllimport)
+#endif
 namespace vjoy_plusplus
 {
 	typedef JOYSTICK_POSITION_V2 JoystickPosition;
 	typedef VjdStat VjoyDeviceStatus;
-	class VJOY_BUILDING_DLL vJoy 
+	class VJOY_PLUSPLUS_VISIBILITY vJoy 
 	{
 	public:
 		vJoy(const unsigned int& rID);

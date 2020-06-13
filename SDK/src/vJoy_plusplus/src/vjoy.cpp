@@ -1,6 +1,7 @@
 #include "vJoy_plusplus/vjoy.h"
 #include <stdexcept>
 #include <sstream>
+#include "vJoy/public.h"
 namespace vjoy_plusplus
 {
 	vJoy::vJoy(const unsigned int& rID)
@@ -34,7 +35,7 @@ namespace vjoy_plusplus
 
 	void vJoy::update(const vjoy_plusplus::JoystickPosition& joystick)
 	{
-		PVOID pPositionMessage = (PVOID)(&joystick);
+		JOYSTICK_POSITION_V2* pPositionMessage = (JOYSTICK_POSITION_V2*)(&joystick);
 		if (!UpdateVJD(rID_, pPositionMessage))
 		{
 			std::stringstream ss;
