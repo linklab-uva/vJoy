@@ -31,11 +31,7 @@ option(BUILD_TEST_CLIENT "Build the test executable" OFF)
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/install CACHE PATH "..." FORCE)
 endif()
-if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-	set(VJOY_LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/amd64)
-else(CMAKE_SIZEOF_VOID_P EQUAL 4)
-	set(VJOY_LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib)
-endif()
+set(VJOY_LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/amd64)
 set(VJOY_LIB vJoyInterface)
 
 install(DIRECTORY include/vJoy
@@ -45,6 +41,10 @@ install(DIRECTORY include/vJoy
 install(FILES ${VJOY_LIB_DIR}/${VJOY_LIB}.lib
 #EXPORT ${PROJECT_NAME}-export
 DESTINATION lib/vjoyinterface
+)
+install(FILES ${VJOY_LIB_DIR}/${VJOY_LIB}.dll
+#EXPORT ${PROJECT_NAME}-export
+DESTINATION bin
 )
 if(BUILD_TEST_CLIENT)
 	add_subdirectory(src/test_client)
