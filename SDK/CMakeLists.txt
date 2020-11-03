@@ -42,9 +42,9 @@ install(FILES ${VJOY_LIB_DIR}/${VJOY_LIB}.lib
 #EXPORT ${PROJECT_NAME}-export
 DESTINATION lib/vjoyinterface
 )
-install(FILES ${VJOY_LIB_DIR}/${VJOY_LIB}.dll
-#EXPORT ${PROJECT_NAME}-export
-DESTINATION bin
+install(DIRECTORY ${VJOY_LIB_DIR}/
+	DESTINATION bin
+	FILES_MATCHING PATTERN "*.dll"
 )
 if(BUILD_TEST_CLIENT)
 	add_subdirectory(src/test_client)
