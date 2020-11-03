@@ -16,7 +16,7 @@
 #endif
 
 // Add vJoy driver's own public defines (IOCtl, HID, memory structs like JOYSTICK_POSITION_V2)
-#include <vJoy/public.h>
+#include <vjoy/public.h>
 // For data alignment, see https://en.wikipedia.org/wiki/Data_structure_alignment#Typical_alignment_of_C_structs_on_x86
 
 ///////////////////////////// vJoy device (collection) status ////////////////////////////////////////////

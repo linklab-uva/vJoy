@@ -41,7 +41,7 @@ Revision History:
 #ifdef PPJOY_MODE
 #include "PPJIoctl.h"
 #endif
-
+#include <windows.h>
 #include <INITGUID.H>	// Definitions for controlling GUID initialization
 
 // Sideband comunication with vJoy Device
@@ -62,7 +62,7 @@ DEFINE_GUID(GUID_DEVINTERFACE_VJOY, 0x781EF630, 0x72B2, 0x11d2, 0xB8, 0x52, 0x00
 #define VJOY_INTERFACE				L"Device_"
 
 // Use auto-generated version file from inc/
-#include "vJoy/gen-versioninfo.h"
+#include "vjoy/gen-versioninfo.h"
 // This is a hardcoded version, not to be confused with whole {installer+libs+SDK} that
 // use getversion to retrieve a 'git describe' (tag) version.
 // Version parts as a serie of digits (from higher (X) significant number to lower (L))
@@ -77,7 +77,7 @@ DEFINE_GUID(GUID_DEVINTERFACE_VJOY, 0x781EF630, 0x72B2, 0x11d2, 0xB8, 0x52, 0x00
 
 // Use to select which level of API is being used by the driver : 1 2 or 3
 // See JOYSTICK_POSITION, JOYSTICK_POSITION_V2, JOYSTICK_POSITION_V3
-#define USE_JOYSTICK_API_VERSION 3
+#define USE_JOYSTICK_API_VERSION 2
 
 #ifndef USE_JOYSTICK_API_VERSION
 #error "Must select an API version!"

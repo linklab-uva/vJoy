@@ -1,7 +1,7 @@
 #include "vJoy_plusplus/vjoy.h"
 #include <stdexcept>
 #include <sstream>
-#include "vJoy/public.h"
+#include "vJoy/vjoyinterface.h"
 namespace vjoy_plusplus
 {
 	vJoy::vJoy(const unsigned int& rID)
